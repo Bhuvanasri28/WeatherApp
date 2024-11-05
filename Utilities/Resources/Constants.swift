@@ -2,7 +2,7 @@
 //  Constants.swift
 //  WeatherApp
 //
-//  Created by Bhuvana Ravuri on 9/12/24.
+//  Created by Bhuvana Ravuri on 11/04/24.
 //
 
 import SwiftUI
@@ -27,6 +27,7 @@ class Constants {
         static let rainChances = "Rain chances"
         static let weather = "Weather"
         static let newYork = "New York"
+        static let visibility = "Visibility"
     }
     
     class Colors {
@@ -48,6 +49,7 @@ class Constants {
         static let warm = "warm"
         static let magnifyingGlass = "magnifyingglass"
         static let location = "location.fill"
+        static let visibility = "visibility" 
     }
     
     class Font {

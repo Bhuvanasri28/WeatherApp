@@ -2,7 +2,7 @@
 //  SearchBar.swift
 //  WeatherApp
 //
-//  Created by Bhuvana Ravuri on 9/12/24.
+//  Created by Bhuvana Ravuri on 11/04/24.
 //
 
 import SwiftUI

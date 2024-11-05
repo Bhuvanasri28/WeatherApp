@@ -2,7 +2,7 @@
 //  MainCoordinator.swift
 //  WeatherApp
 //
-//  Created by Bhuvana Ravuri on 9/12/24.
+//  Created by Bhuvana Ravuri on 11/4/24.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class MainCoordinator: NSObject, ObservableObject, Coordinator {  // Conform to 
 
     func start() {
         let viewModel = WeatherViewModel()
-        let contentView = WeatherView(viewModel: viewModel)
+        let contentView = WeatherHomeView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: contentView)
         navigationController.pushViewController(hostingController, animated: true)
     }
