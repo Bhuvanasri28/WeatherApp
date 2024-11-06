@@ -124,6 +124,7 @@
 			children = (
 				53EF50172C93929100EDBE02 /* ViewModel */,
 				53EF51122CADAE1C00EDBE02 /* WeatherHomeView.swift */,
+				53375B4D2CDAB965003C0D8C /* WeatherSearchView.swift */,
 				53375B2D2CD9D056003C0D8C /* WeatherBackgroundView.swift */,
 				53375B2F2CD9D094003C0D8C /* WeatherHeaderView.swift */,
 				53375B332CD9D152003C0D8C /* WeatherInDetailView.swift */,
@@ -211,7 +212,6 @@
 			children = (
 				53EF50182C9392C800EDBE02 /* WeatherViewModel.swift */,
 				53EF50202C93C65300EDBE02 /* WeatherService.swift */,
-				53375B4D2CDAB965003C0D8C /* WeatherSearchView.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

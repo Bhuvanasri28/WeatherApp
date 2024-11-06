@@ -14,6 +14,8 @@ class WeatherViewModel: NSObject, ObservableObject {
     @Published var weather: Weather?
     @Published var errorMessage: String?
     @Published var citySuggestions: [City] = []
+    @Published var searchText: String = ""
+    @Published var isSearching: Bool = false
     private var cancellables = Set<AnyCancellable>()
     private let weatherService: WeatherService
     private let locationManager = CLLocationManager()

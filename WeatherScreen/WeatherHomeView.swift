@@ -9,49 +9,16 @@ import SwiftUI
 
 struct WeatherHomeView: View {
     
-    @State private var searchText: String = ""
-    @State private var isSearching: Bool = false
     @ObservedObject var viewModel: WeatherViewModel
     
     var body: some View {
         ScrollView {
             ZStack {
                 WeatherBackgroundView()
-                VStack(spacing: 20) {
-                    VStack {
-                        Text("\(Constants.Strings.weather)")
-                            .bold()
-                            .foregroundColor(.white)
-                            .font(.largeTitle)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 10)
-                            .padding(.top, 60)
-                        
-                        SearchBar(text: $searchText)
-                            .padding(.bottom, 0)
-                            .foregroundColor(.clear)
-                        
-                        // Display the list of filtered city suggestions
-                        if !searchText.isEmpty {
-                            ScrollView {
-                                VStack {
-                                    ForEach(viewModel.citySuggestions) { city in
-                                        Text("\(city.name), \(city.state ?? ""), \(city.country)")
-                                            .onTapGesture {
-                                                searchText = city.name
-                                                viewModel.fetchWeather(for: city.name)
-                                                hideKeyboard()
-                                                isSearching = false
-                                                searchText = ""
-                                            }
-                                    }
-                                }
-                                .frame(maxHeight: 200) // Adjust the height based on your design
-                            }
-                        }
-                    }
-                    if !isSearching {
-                        if let weather = viewModel.weather {
+                VStack {
+                    WeatherSearchView(viewModel: viewModel)
+                    if !viewModel.isSearching {
+                        if viewModel.weather != nil {
                             WeatherHeaderView(viewModel: viewModel)
                             //WeatherHourlyView(weather: viewModel.weather ?? MockWeatherData.sampleWeatherData)
                             WeatherInDetailView(viewModel: viewModel)
@@ -61,8 +28,6 @@ struct WeatherHomeView: View {
                             Text("Enter a city to get weather data") // Placeholder when no data is available
                         }
                     }
-                    Spacer()
-                    
                 }
                 .padding()
             }
@@ -73,13 +38,13 @@ struct WeatherHomeView: View {
             .onAppear {
                 viewModel.requestLocationAccess()
             }
-            .onChange(of: searchText) { newValue in
+            .onChange(of: viewModel.searchText) { newValue in
                 if !newValue.isEmpty {
-                    isSearching = true // Set searching state to true when user starts typing
+                    viewModel.isSearching = true
                     viewModel.fetchCitySuggestions(for: newValue)
                 } else {
-                    isSearching = false // Set searching state to false when search text is empty
-                    viewModel.citySuggestions = []  // Clear suggestions when search is empty
+                    viewModel.isSearching = false
+                    viewModel.citySuggestions = []
                 }
             }
         }
